@@ -48,6 +48,15 @@ app.post("/api/buy-airtime", async (req, res) => {
   } catch (e) {
     res.status(500).json({ error: "Paybeta error", details: e.message });
   }
+});// PayBeta Webhook
+app.post("/webhook", (req, res) => {
+  console.log("PayBeta Webhook:", req.body);
+  res.status(200).json({ message: "ok" });
 });
+
+app.get("/webhook", (req, res) => {
+  res.json({ message: "Webhook is alive" });
+});
+
 const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => console.log("Rolly backend running on port " + PORT));
